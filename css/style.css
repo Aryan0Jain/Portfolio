@@ -115,7 +115,7 @@ div.hide{
     width: 100vw;
     height: 100vh;
     z-index: 10;
-    animation: bg 5s linear forwards;
+    animation: bg 6s linear forwards;
 }
 @keyframes bg {
     0%{
@@ -138,24 +138,47 @@ div.hide{
     text-align: center;
     justify-content: center;
     align-content: center;
-    background-color: black;
+    background: linear-gradient(to bottom right, black, rgb(61, 51, 51), rgb(106, 66, 66), rgb(142, 67, 67), rgb(141, 20, 20));
     font-size: 25px;
     gap: 20px;
     text-wrap: nowrap;
-    animation: welcome 5s linear forwards;
+    background-size: 400% 400%;
+    animation: gradient 3s ease infinite, welcome 6s linear forwards;
+}
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 @keyframes welcome {
     0%{
-        left: -100vw;
+        left: 0vw;
+        opacity: 0;
+        
     }
     20%{
         left: 0vw;
+        opacity: 1;
     }
     80%{
         left: 0vw;
+        opacity: 1;
     }
+    
+    /* 99%{
+        left: 100vw;
+        opacity: 0;
+    } */
     100%{
-        left: -100vw;
+        left: 100vw;
+        /* display: none; */
+        /* left: -100vw; */
     }
 }
 .title-word {
