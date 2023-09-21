@@ -105,7 +105,7 @@ div.hide{
 
     }
     80%{
-        display: unset;
+        display: initial;
     }
 }
 .bg{
@@ -119,12 +119,17 @@ div.hide{
 }
 @keyframes bg {
     0%{
-        visibility: inherit;
+        visibility: initial;
     }
     50%{
-        visibility: inherit;
+        visibility: initial;
+        z-index: 10;
     }
-    51%,100%{
+    51%{
+        visibility: hidden;
+        z-index: -15;
+    }
+    100%{
         visibility: hidden;
     }
 }
@@ -175,10 +180,15 @@ div.hide{
         left: 100vw;
         opacity: 0;
     } */
+    99%{
+        z-index: 10;
+    }
     100%{
-        left: 100vw;
+        /* left: 100vw; */
         /* display: none; */
         /* left: -100vw; */
+        opacity: 0;
+        z-index: -15;
     }
 }
 .title-word {
@@ -242,8 +252,8 @@ header{
     font-size: 20px;
     padding: 20px 5vw;
     z-index: 4;
-    border-bottom-left-radius: 20px ;
-    border-bottom-right-radius: 20px ;
+    border-bottom-left-radius: 10px ;
+    border-bottom-right-radius: 10px ;
 }
 header .logo img{
     height: 20px;
@@ -252,9 +262,14 @@ header .logo img{
     margin-right: 3px;
 }
 .mobile-menu{
-    display: none;
-    background-color: lightseagreen;
-    border-radius: 20px;
+    display: flex !important;
+    position: fixed;
+    flex-direction: column;
+    /* background-color: lightseagreen; */
+    border-radius: 12px;
+    z-index: 12;
+    top: 40vh;
+    right: -10vw;
 }
 header nav{
     justify-content: flex-end;
@@ -299,7 +314,7 @@ header nav a:hover{
     margin: 100px 7%;
     padding: 0px 12%;
     /* border: 5px solid white; */
-    border-radius: 20px;
+    border-radius: 10px;
 }
 .home-animation-ray{
     position: absolute;
@@ -556,25 +571,44 @@ header nav a:hover{
     font-size: 1.75rem;
     font-weight: 400;
     margin-top: 70px;
-    padding-left: 15%;
+    /* padding-left: 15%; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-wrap: wrap;
 }
 .hire a{
-    display: inline-block;
-    color: white;
+    /* display: inline-block;
+    color: white; */
+    background-color: #111;
     font-weight: 600;
     /* border: 3px solid var(--c1); */
     border: none;
-    background-color: blue;
-    padding: 10px 15px;
-    border-radius: 5px;
     transition: all 200ms;
-    box-shadow: 0px 5px 5px 1px black;
-    /* z-index: 2; */
+    z-index: 2;
 }
 .hire a:hover{
     /* color: var(--c2);
     border-color: var(--c2); */
     scale: 1.1;
+}
+.letter {
+    position : relative;
+    margin: 10px;
+}
+.letter span {
+    position: relative;
+    display: inline-block;
+    font-size: 25px;
+    color: #fff;
+    text-transform: uppercase;
+    animation: flip 2s infinite;
+    animation-delay: calc(.2s * var(--i))
+}
+@keyframes flip {
+    0%,80% {
+        transform: rotateY(360deg) 
+    }
 }
 
 
@@ -594,24 +628,6 @@ header nav a:hover{
     box-shadow: 5px 5px 10px 5px rgb(77, 77, 77);
     transition: all 200ms;
 }
-.triangle{
-    border-left: 116px solid transparent;
-    border-right: 116px solid transparent;
-    border-bottom: 200px solid #85CCCA;
-    position: absolute;
-    z-index: -1;
-    bottom: 25%;
-    right: 0;
-    animation: triangle 4s infinite linear;
-}
-@keyframes triangle {
-    0%, 100%{
-        transform: rotate3d(0);
-    }
-    10%{
-        transform: rotate3d(2);
-    }
-}
 
 /* Skills section */
 .skills{
@@ -621,7 +637,7 @@ header nav a:hover{
     margin: 100px 7%;
     padding: 50px 12%;
     /* border: 5px solid white; */
-    border-radius: 20px;
+    border-radius: 10px;
 }
 .skills h1{
     margin-bottom: 50px;
@@ -683,7 +699,7 @@ header nav a:hover{
     margin: 100px 7%;
     padding: 50px 12%;
     /* border: 5px solid white; */
-    border-radius: 20px;
+    border-radius: 10px;
 }
 .about .title{
     /* font-size: 2.5rem; */
@@ -743,7 +759,7 @@ header nav a:hover{
     margin: 100px 7%;
     padding: 50px 12%;
     /* border: 5px solid white; */
-    border-radius: 20px;
+    border-radius: 10px;
 }
 .education h1{
     text-align: center;
@@ -788,7 +804,7 @@ header nav a:hover{
     margin: 100px 7%;
     padding: 50px 12% 20px;
     /* border: 5px solid white; */
-    border-radius: 20px;
+    border-radius: 10px;
 }
 .contact h1{
     font-size: 2.5rem;
@@ -874,7 +890,7 @@ footer{
     padding: 50px 12%;
     margin-bottom: 0px;
     /* border: 5px solid white; */
-    border-radius: 20px;
+    border-radius: 10px;
     border-bottom: none;
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
@@ -955,4 +971,67 @@ hr{
         transform: translate(0px, 5px);
     }
 }
+:root {
+    --angle: 45deg;
+    --opacity: 0.5;
+}
+.border{
+    /* display: grid;
+    place-content: center;
+    text-align: center; */
+    border-radius: 10px;
+    /* font-size: 1.5em; */
 
+    --border-size: 5px;
+    border: var(--border-size) solid transparent;
+
+    /* Paint an image in the border */
+    border-image: conic-gradient(
+        from var(--angle),
+        #d53e33 0deg 90deg,
+        #fbb300 90deg 180deg,
+        #377af5 180deg 270deg,
+        #399953 270deg 360deg
+    )
+    1 stretch;
+    background: rgb(255 255 255 / var(--opacity));
+}
+  
+@supports (background: paint(houdini)) {
+    @property --opacity {
+        syntax: "<number>";
+        initial-value: 1;
+        inherits: false;
+    }
+
+    @property --angle {
+        syntax: "<angle>";
+        initial-value: 0deg;
+        inherits: false;
+    }
+
+    @keyframes opacityChange {
+        to {
+        --opacity: 1;
+        }
+    }
+
+    @keyframes rotate {
+        to {
+        --angle: 360deg;
+        }
+    }
+
+    .border {
+        animation: rotate 4s linear infinite;
+    }
+}
+.home, .about, .contact{
+    background-color: var(--b1);
+}
+.skills, .education{
+    background-color: var(--b2);
+}
+footer{
+    background-color: lightcoral;
+}
